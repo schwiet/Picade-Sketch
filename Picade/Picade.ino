@@ -13,22 +13,22 @@
 
 /* Change key bindings below */
 static input inputs[] = {
-  { KEY_UP_ARROW,    UP     },
-  { KEY_DOWN_ARROW,  DOWN   },
-  { KEY_LEFT_ARROW,  LEFT   },
-  { KEY_RIGHT_ARROW, RIGHT  },
+  { '1',  UP     },
+  { '2',  DOWN   },
+  { '3',  LEFT   },
+  { '4',  RIGHT  },
 
-  { KEY_LEFT_CTRL,   BTN_1  },
-  { KEY_LEFT_ALT,    BTN_2  },
-  { KEY_RETURN,      BTN_3, '@' },
-  { KEY_LEFT_SHIFT,  BTN_4  },
-  { 'z',             BTN_5  },
-  { 'x',             BTN_6  },
+  { '5',             BTN_1       },
+  { '6',             BTN_2       },
+  { '7',             BTN_3,      },
+  { '8',             BTN_4       },
+  { KEY_LEFT_CTRL,   BTN_5, '2'  },
+  { KEY_LEFT_CTRL,   BTN_6, '4'  },
 
-  { 's',             START  },
-  { 'c',             COIN   },
-  { ' ',             ENTER, '!' },
-  { KEY_ESC,         ESCAPE },
+  { KEY_LEFT_CTRL,   START, '3'  },
+  { KEY_LEFT_CTRL,   COIN,  '1'  },
+  { ' ',             ENTER, '9'  },
+  { KEY_ESC,         ESCAPE      },
 
 #ifndef ENABLE_VOLUME_BUTTONS
   /* Change these lines to set key bindings for VOL_UP and VOL_DN */
