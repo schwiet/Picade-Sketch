@@ -20,14 +20,14 @@ static input inputs[] = {
 
   { KEY_LEFT_CTRL,   BTN_1  },
   { KEY_LEFT_ALT,    BTN_2  },
-  { ' ',             BTN_3  },
+  { KEY_RETURN,      BTN_3, '@' },
   { KEY_LEFT_SHIFT,  BTN_4  },
   { 'z',             BTN_5  },
   { 'x',             BTN_6  },
 
   { 's',             START  },
   { 'c',             COIN   },
-  { KEY_RETURN,      ENTER  },
+  { ' ',             ENTER, '!' },
   { KEY_ESC,         ESCAPE },
 
 #ifndef ENABLE_VOLUME_BUTTONS
@@ -81,7 +81,17 @@ void update(void){
       inputs[i].state = state; // update our state map so we know what's happening with this key in future
       inputs[i].last_change = millis();
       // send the key press or release event
-      if(state){ Keyboard.press(inputs[i].key);}else{Keyboard.release(inputs[i].key);}
+      if(state){
+        Keyboard.press(inputs[i].key);
+        if( inputs[i].alt_key > 0 ){
+          Keyboard.press(inputs[i].alt_key);
+        }
+      }else{
+        Keyboard.release(inputs[i].key);
+        if( inputs[i].alt_key > 0 ){
+          Keyboard.release(inputs[i].alt_key);
+        }
+      }
     }
   }
 }

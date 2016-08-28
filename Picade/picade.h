@@ -45,6 +45,7 @@ typedef struct
 {
   char    key;      // keycode to emit when input is pressed
   char    pin;      // Arduino pin number for this input
+  char    alt_key;  // additional keycode to emit when input is pressed
   boolean state;    // what state was the input last in ( HIGH/LOW )
   unsigned long last_change;
 } input;
