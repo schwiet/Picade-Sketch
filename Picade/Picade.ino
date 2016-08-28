@@ -59,13 +59,13 @@ picade_config default_config = {
     {KEY_RIGHT_ARROW},
     {KEY_LEFT_CTRL},
     {KEY_LEFT_ALT},
-    {' '},
+    {KEY_RETURN, 0, 0, '!'},
     {KEY_LEFT_SHIFT},
     {'z'},
     {'x'},
     {'s'},
     {'c'},
-    {KEY_RETURN},
+    {' ', 0, 0, '@'},
     {KEY_ESC},
     {'u'},
     {'d'},
@@ -161,6 +161,7 @@ void update(void) {
 
 bool handle_key(uint8_t i, uint8_t state) {
   uint8_t key = default_config.buttons[i].key;
+  uint8_t key2 = default_config.buttons[i].key2;
 
   // If shift state ALT_1 is enabled, use the alt_1 keybind
   // The key with ACT_ALT_1 bound can not be shifted!
@@ -263,8 +264,14 @@ bool handle_key(uint8_t i, uint8_t state) {
     // Keyboard Button
     if (state) {
       Keyboard.press(key);
+      if( key2 > 0 ){
+        Keyboard.press(key2);
+      }
     } else {
       Keyboard.release(key);
+      if( key2 > 0 ){
+        Keyboard.release(key2);
+      }
     }
     return false;
   }

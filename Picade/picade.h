@@ -111,6 +111,7 @@ typedef struct
   uint8_t key;
   uint8_t alt1;
   uint8_t alt2;
+  uint8_t key2;
 } key_bind;
 
 typedef struct
@@ -192,7 +193,7 @@ void volume_up(){
   delay(5);
 };
 
-void volume_down(){ 
+void volume_down(){
   if(volume_current == 0) return;
   volume_current--;
   digitalWrite(AMP_DN, LOW);
@@ -216,7 +217,7 @@ void volume_track(){
   if(volume_target > volume_current){
     volume_up();
   }
-  
+
   if(volume_target < volume_current){
     volume_down();
   }
@@ -235,7 +236,7 @@ void volume_fade(int level){
       volume_down();
     }
   }
-  
+
 }
 
 void volume_target_up(){
@@ -264,7 +265,7 @@ void load_volume(uint8_t volume){
 
 
 void picade_help(){
-  
+
         Serial.println(F("\nPicade Config"));
         Serial.println(F("Bind single:    b <button> <keycode> <optional:alt1> <optional:alt2>"));
         Serial.println(F("Bind all:       a <keycode> <keycode> ..."));
@@ -283,7 +284,7 @@ void picade_help(){
         Serial.print(3);Serial.print(F("  = Joy R    "));
 
         Serial.println();
-        
+
         Serial.print(4);Serial.print(F("  = Btn 1    "));
         Serial.print(5);Serial.print(F("  = Btn 2    "));
         Serial.print(6);Serial.print(F("  = Btn 3    "));
@@ -292,19 +293,19 @@ void picade_help(){
         Serial.print(9);Serial.print(F("  = Btn 6    "));
 
         Serial.println();
-        
+
         Serial.print(10);Serial.print(F(" = Start    "));
         Serial.print(11);Serial.print(F(" = Coin     "));
         Serial.print(12);Serial.print(F(" = Enter    "));
         Serial.print(13);Serial.print(F(" = Escape   "));
 
         Serial.println();
-        
+
         Serial.print(14);Serial.print(F(" = Vol Up   "));
         Serial.print(15);Serial.print(F(" = Vol Down "));
 
         Serial.println();
-        
+
         Serial.print(16);Serial.print(F(" = MOSI     "));
         Serial.print(17);Serial.print(F(" = MISO     "));
         Serial.print(18);Serial.print(F(" = SCLK     "));
@@ -327,7 +328,7 @@ void picade_help(){
         Serial.print(JOY1_Y);Serial.print(F(" = Joy 1 Y  "));
         Serial.print(JOY2_X);Serial.print(F(" = Joy 2 X  "));
         Serial.print(JOY2_Y);Serial.print(F(" = Joy 2 Y  "));
-        
+
         Serial.println();
 
         for(int x = JOYSTICK_BUTTON_START; x < JOYSTICK_BUTTON_START+16; x++){
@@ -336,12 +337,12 @@ void picade_help(){
           Serial.print(x - JOYSTICK_BUTTON_START);
           if( x - JOYSTICK_BUTTON_START < 10 ) Serial.print(" ");
           Serial.print("  ");
-          
+
           if((x-1) % 4 == 0){
             Serial.println();
           }
         }
-        
+
         Serial.println();
 
         Serial.print(ACT_VOL_UP);      Serial.print(F(" = Vol +   "));
@@ -349,65 +350,65 @@ void picade_help(){
 
         Serial.print(ACT_ALT_1);       Serial.print(F(" = Alt 1   "));
         Serial.print(ACT_ALT_2);       Serial.print(F(" = Alt 2   "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_UP_ARROW);    Serial.print(F(" = U Arrow "));
         Serial.print(KEY_DOWN_ARROW);  Serial.print(F(" = D Arrow "));
         Serial.print(KEY_LEFT_ARROW);  Serial.print(F(" = L Arrow "));
         Serial.print(KEY_RIGHT_ARROW); Serial.print(F(" = R Arrow "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_LEFT_CTRL);   Serial.print(F(" = L Ctrl  "));
         Serial.print(KEY_LEFT_SHIFT);  Serial.print(F(" = L Shift "));
         Serial.print(KEY_LEFT_ALT);    Serial.print(F(" = L Alt   "));
         Serial.print(KEY_LEFT_GUI);    Serial.print(F(" = L GUI   "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_RIGHT_CTRL);  Serial.print(F(" = R Ctrl  "));
         Serial.print(KEY_RIGHT_SHIFT); Serial.print(F(" = R Shift "));
         Serial.print(KEY_RIGHT_ALT);   Serial.print(F(" = R Alt   "));
         Serial.print(KEY_RIGHT_GUI);   Serial.print(F(" = R GUI   "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_BACKSPACE);   Serial.print(F(" = Backspc "));
         Serial.print(KEY_TAB);         Serial.print(F(" = TAB     "));
         Serial.print(KEY_RETURN);      Serial.print(F(" = Return  "));
         Serial.print(KEY_ESC);         Serial.print(F(" = ESC     "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_INSERT);      Serial.print(F(" = Insert  "));
         Serial.print(KEY_DELETE);      Serial.print(F(" = Delete  "));
         Serial.print(KEY_PAGE_UP);     Serial.print(F(" = Pg Up   "));
         Serial.print(KEY_PAGE_DOWN);   Serial.print(F(" = Pg Down "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_HOME);        Serial.print(F(" = Home    "));
         Serial.print(KEY_END);         Serial.print(F(" = End     "));
         Serial.print(KEY_CAPS_LOCK);   Serial.print(F(" = Caps Lk "));
         Serial.print(13);              Serial.print(F("  = Space   "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_F1);          Serial.print(F(" = F1      "));
         Serial.print(KEY_F2);          Serial.print(F(" = F2      "));
         Serial.print(KEY_F3);          Serial.print(F(" = F3      "));
         Serial.print(KEY_F4);          Serial.print(F(" = F4      "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_F5);          Serial.print(F(" = F5      "));
         Serial.print(KEY_F6);          Serial.print(F(" = F6      "));
         Serial.print(KEY_F7);          Serial.print(F(" = F7      "));
         Serial.print(KEY_F8);          Serial.print(F(" = F8      "));
-        
+
         Serial.println();
-        
+
         Serial.print(KEY_F9);          Serial.print(F(" = F9      "));
         Serial.print(KEY_F10);         Serial.print(F(" = F10     "));
         Serial.print(KEY_F11);         Serial.print(F(" = F11     "));
@@ -415,18 +416,16 @@ void picade_help(){
 
         Serial.println();
         Serial.println();
-        
+
         for(int x = 33;  x < 127; x++){
           Serial.print(x);
           if( x < 100) Serial.print(" ");
-          
+
           Serial.print(F(" = ")); Serial.print((char)x); Serial.print(F("       "));
           if(x % 4 == 0){
             Serial.println();
           }
         }
-        
+
         Serial.println();
 }
-
-
